@@ -25,7 +25,11 @@ public class Cliente {
         this.cuenta = unaCuenta;
         
     }
-
+    
+    public Cliente(){
+        
+    }
+    
     public String getNombre() {
         return nombre;
     }

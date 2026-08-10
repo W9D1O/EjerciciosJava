@@ -40,8 +40,27 @@ public class Cuenta {
         }
     }
     
-    public void depositarDinero(float valor){
-        this.saldo += valor;
+    private boolean hayLugar() {
+        return this.dimF - 1 < this.MAXMOV;
+    }
+    
+    private void agregarMovimiento(Movimiento unMovimiento) {
+        if (this.hayLugar()) {
+            this.movimiento[this.dimF] = unMovimiento;
+            this.dimF++;
+        }
+        
+    }
+    
+    // No creo que pedir la fecha este bien pero por el momento sirve
+    public void depositarDinero(float valor, String fecha){
+        if (hayLugar()) {
+            this.saldo += valor;
+            Movimiento nuevo = new Movimiento(valor,this.saldo,fecha,"Deposito",
+                    this.numero,this.numero);
+            this.agregarMovimiento(nuevo);
+        }
+        
     }
     
     
@@ -49,9 +68,12 @@ public class Cuenta {
         return "ERROR: Saldo insuficiente. Transaccion Cancelada.";
     }
     
-    public void extraerDinero(float valor){
-        if (this.saldo >= valor) {
+    public void extraerDinero(float valor, String fecha){
+        if (this.saldo >= valor && hayLugar()) {
             this.saldo -= valor;
+            Movimiento nuevo = new Movimiento(valor,this.saldo,fecha,"Extraccion",
+            this.numero,this.numero);
+            this.agregarMovimiento(nuevo);
         } else {
             System.out.println(this.saldoInsuficiente());
         }
@@ -60,14 +82,27 @@ public class Cuenta {
     
     /*Pensar estaá funcion, es decir, si transferis resta de la cuenta
     pero la pregunta es quien debe reciabir es destinatario.*/
-    public float transferirDinero(float monto){
+    public float transferirDinero(float monto, String fecha, int numeroDestino){
         float resul = 0;
-        if (this.saldo >= monto) {
+        if (this.saldo >= monto && hayLugar()) {
             this.saldo -= monto;
+            Movimiento nuevo = new Movimiento(monto,this.saldo,fecha,"Transferencia",
+            this.numero,numeroDestino);
+            this.agregarMovimiento(nuevo);
             resul =  monto;
+            
         } else System.out.println(this.saldoInsuficiente());
         
         return resul;
+    }
+    
+    public void recibirTranferencia(float valor, int numeroOrigen, String fecha) {
+        if (hayLugar()) {
+            this.saldo += valor;
+            Movimiento nuevo = new Movimiento(valor,this.saldo,fecha,"Transferencia",
+            numeroOrigen,this.numero);
+            this.agregarMovimiento(nuevo);
+        }
     }
     
     public String informarSaldo(){

@@ -10,5 +10,16 @@ package sistemabancario;
  * @author w9d1o
  */
 public class Banco {
+    private String nombre;
+    private ArrayCliente clientes;
+    private ArrayCuenta cuentas;
+    private final int MAX = 1024;
+    
+    public Banco(String unNombre) {
+        this.nombre = unNombre;
+        this.clientes = new ArrayCliente(this.MAX);
+        this.cuentas = new ArrayCuenta(this.MAX);
+    }
+    
     
 }
