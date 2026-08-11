@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sistemabancario;
 
 /**
  *
- * @author w9d1o
+ * Podria haber hecho una clase abstracta para arraay pero, es 
+ * preferible por el momento ir avanzando de a poco.
  */
 public class ArrayCuenta {
     private Cuenta[] array;
@@ -23,22 +20,36 @@ public class ArrayCuenta {
         }
     }
     
-    public Cuenta getCuenta(int numero){
-        return this.array[numero];
+    public Cuenta getCuenta(int posicion){
+        Cuenta aux = null;
+        if (posicion > 0 && posicion < this.dimL) {
+            aux = this.array[posicion];
+        }
+        
+        return aux;
     }
-
-    public void agregarCuenta(){
+    
+    
+    public int getIndex(int numeroCuenta){
+        int i = 0;
+        while(i < this.dimL  &&
+                (this.array[i] == null || 
+                this.array[i].getNumero() != numeroCuenta)) i++;
+        if (i >= this.dimL) i = -1;
+        return i;
+    }
+    
+    public void agregarCuenta(Cuenta nueva){
         if (this.dimL < this.max) {
-            Cuenta nueva = new Cuenta(this.dimL);
             this.array[this.dimL] = nueva;
             this.dimL++;
             
         }
     }
     
-    /*Tenemos un problea, estamos usando el indice
-    del array como numero de cuenta*/
-    public void eliminarCuenta(int pos){
+    /*Cambiamos esto al final ahora obtenemos la posicion*/
+    public void eliminarCuenta(int numeroCuenta){
+        int pos = this.getIndex(numeroCuenta);
         if (pos >= 0 && pos < this.dimL) {
             for (int i = pos; i < this.dimL; i++) {
                 this.array[i] = this.array[i + 1];

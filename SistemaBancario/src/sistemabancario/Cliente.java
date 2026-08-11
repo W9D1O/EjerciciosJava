@@ -15,14 +15,16 @@ public class Cliente {
     private String nombre;
     private String apellido;
     private int dni;
-    private Cuenta cuenta;
+    private ArrayCuenta cuentas;
     
     public Cliente(String unNombre,String unApellido,
-                    int unDni,Cuenta unaCuenta){
+                    int unDni,Cuenta unaCuenta, int maxCuentas){
         this.nombre = unNombre;
         this.dni = unDni;
         this.apellido = unApellido;
-        this.cuenta = unaCuenta;
+        this.cuentas = new ArrayCuenta(maxCuentas);
+        this.cuentas.agregarCuenta(unaCuenta);
+        
         
     }
     
@@ -54,14 +56,7 @@ public class Cliente {
         this.dni = dni;
     }
 
-    public Cuenta getCuenta() {
-        return cuenta;
-    }
 
-    public void setCuenta(Cuenta cuenta) {
-        this.cuenta = cuenta;
-    }
-    
         
     
 }

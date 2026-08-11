@@ -108,6 +108,10 @@ public class Cuenta {
     public String informarSaldo(){
         return "Saldo disponible: $" + this.saldo; 
     }
+
+    public int getNumero() {
+        return numero;
+    }
     
     
 }

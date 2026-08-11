@@ -13,13 +13,16 @@ public class Banco {
     private String nombre;
     private ArrayCliente clientes;
     private ArrayCuenta cuentas;
-    private final int MAX = 1024;
+    private final int MAXCLIENTE = 1024;
+    private final int FACTOR = 2;
+    private final int MAXCUENTA = MAXCLIENTE * FACTOR;
     
     public Banco(String unNombre) {
         this.nombre = unNombre;
-        this.clientes = new ArrayCliente(this.MAX);
-        this.cuentas = new ArrayCuenta(this.MAX);
+        this.clientes = new ArrayCliente(this.MAXCLIENTE);
+        this.cuentas = new ArrayCuenta(this.MAXCUENTA);
     }
     
+
     
 }
