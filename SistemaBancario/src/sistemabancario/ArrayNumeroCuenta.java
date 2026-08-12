@@ -30,12 +30,17 @@ public class ArrayNumeroCuenta {
         return vf;
     }
     
+    private boolean hayLugar() {
+        return this.dimL < this.max;
+    }
+    
     private void generarNumeroCuenta() {
         if (this.dimL == 0) {
             this.numeros[dimL] = ThreadLocalRandom.current()
                                 .nextInt(1, Integer.MAX_VALUE);
             this.dimL++;
         } else {
+            if (hayLugar()) {
             int n = ThreadLocalRandom.current()
                     .nextInt(1, Integer.MAX_VALUE);
             while (this.existe(n)) {
@@ -45,6 +50,7 @@ public class ArrayNumeroCuenta {
             
             this.numeros[this.dimL] = n;
             this.dimL++;
+            }
         }
     }
         

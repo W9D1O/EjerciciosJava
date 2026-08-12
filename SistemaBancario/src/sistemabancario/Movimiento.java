@@ -26,8 +26,8 @@ public class Movimiento {
         this.saldoRestante = saldoRestante;
         this.fecha = fecha;
         this.tipo = tipo;
-        this.numeroDestino = src;
-        this.numeroOrigen = dst;
+        this.numeroDestino = dst;
+        this.numeroOrigen = src;
     }
 
     public float getMonto() {

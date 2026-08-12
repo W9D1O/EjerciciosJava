@@ -30,6 +30,36 @@ public class ArrayCliente {
         }
     }
     
+    private boolean hayLugar() {
+       return this.dimL < this.maxClientes;
+    }
     
+    public void agregarCliente(Cliente unCliente) {
+        if (hayLugar()) {
+            this.clientes[this.dimL] = unCliente;
+            this.dimL++;
+        }
+    }
+    
+    public Cliente getCliente(int dni) {
+        Cliente unCliente = null;
+        int i = 0;
+        while (i < this.dimL && dni != this.clientes[i].getDni()) i++;
+        
+        if (i < this.dimL) unCliente = this.clientes[i];
+        return unCliente;
+    }
+    
+    public Cliente getCliente(String apellido, String nombre) {
+        Cliente unCliente = null;
+        int i = 0;
+        while (i < this.dimL &&
+                !this.clientes[i].getNombre().equals(nombre) &&
+                !this.clientes[i].getApellido().equals(apellido) ) i++;
+        
+         if (i < this.dimL) unCliente = this.clientes[i];
+        
+        return unCliente;
+    }
     
 }

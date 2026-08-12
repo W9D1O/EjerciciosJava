@@ -54,11 +54,13 @@ public class ArrayCuenta {
     public void eliminarCuenta(int numeroCuenta){
         int pos = this.getIndex(numeroCuenta);
         if (pos >= 0 && pos < this.dimL) {
-            for (int i = pos; i < this.dimL; i++) {
+            for (int i = pos; i < this.dimL - 1; i++) {
                 this.array[i] = this.array[i + 1];
                 /*esto va a tener que ser cambiadoa*/
             }
+            this.dimL--;
         }
+        
     }
     
 }

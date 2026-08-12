@@ -49,7 +49,7 @@ public class Cliente {
         return apellido;
     }
 
-    public ArrayCuenta agetCuentas() {
+    public ArrayCuenta getCuentas() {
         return this.cuentas;
     }
     

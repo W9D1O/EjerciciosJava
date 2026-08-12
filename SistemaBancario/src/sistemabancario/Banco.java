@@ -14,6 +14,7 @@ public class Banco {
     private String nombre;
     private ArrayCliente clientes;
     private ArrayCuenta cuentas;
+    private ArrayNumeroCuenta numeros;
     private final int MAXCLIENTE = 1024;
     private final int FACTOR = 2;
     private final int MAXCUENTA = MAXCLIENTE * FACTOR;
@@ -22,6 +23,7 @@ public class Banco {
         this.nombre = unNombre;
         this.clientes = new ArrayCliente(this.MAXCLIENTE);
         this.cuentas = new ArrayCuenta(this.MAXCUENTA);
+        this.numeros = new ArrayNumeroCuenta(this.MAXCUENTA);
     }
     
     
@@ -39,6 +41,7 @@ public class Banco {
     
     public void altaCuenta(Cliente unCliente){
         Cuenta nueva = new Cuenta();
+        
         
     }
     

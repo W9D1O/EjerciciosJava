@@ -41,7 +41,7 @@ public class Cuenta {
     }
     
     private boolean hayLugar() {
-        return this.dimF - 1 < this.MAXMOV;
+        return this.dimF < this.MAXMOV;
     }
     
     private void agregarMovimiento(Movimiento unMovimiento) {
