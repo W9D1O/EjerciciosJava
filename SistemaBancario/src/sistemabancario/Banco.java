@@ -49,7 +49,7 @@ public class Banco {
 
     public Cliente buscarCliente(String apellido, String nombre) {
 
-        Cliente unCliente = this.clientes.getCliente(nombre, nombre);
+        Cliente unCliente = this.clientes.getCliente(apellido, nombre);
         return unCliente;
     }
     
@@ -89,5 +89,20 @@ public class Banco {
         if (i >= 0) {
             this.cuentas.getCuenta(i).extraerDinero(monto, fecha);
         } 
+    }
+    
+    public String informarHistorial(int numeroaCuenta) {
+        String historial = "";
+        int pos = this.cuentas.getIndex(numeroaCuenta);
+        if (pos >= 0) historial = this.cuentas.getCuenta(pos).historialMovimientos();
+        return historial;
+    }
+    
+    public String informarSaldo(int numeroCuenta) {
+        String saldo = "";
+        int pos = this.cuentas.getIndex(numeroCuenta);
+        if (pos >= 0) saldo = this.cuentas.getCuenta(pos).informarSaldo();
+        else saldo = "ERROR: Cuenta no válida.\n";
+        return saldo;
     }
 }
