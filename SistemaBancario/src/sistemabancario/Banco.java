@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package sistemabancario;
+import java.util.Scanner;
 
 /**
  *
@@ -23,6 +24,22 @@ public class Banco {
         this.cuentas = new ArrayCuenta(this.MAXCUENTA);
     }
     
-
+    
+    public void registrarCliente() {
+        Cliente nuevo = new Cliente(FACTOR);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingresar Nombre del cliente: ");
+        nuevo.setNombre(scanner.nextLine());
+        System.out.println("Ingrese el Apellido del cliente: ");
+        nuevo.setApellido(scanner.nextLine());
+        System.out.println("Ingrese numero de DNI: ");
+        nuevo.setDni(scanner.nextInt());
+        altaCuenta(nuevo);
+    }
+    
+    public void altaCuenta(Cliente unCliente){
+        Cuenta nueva = new Cuenta();
+        
+    }
     
 }

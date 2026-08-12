@@ -29,8 +29,13 @@ public class Cliente {
     }
     
     public Cliente(){
-        
+
     }
+    
+    public Cliente(int maxCuentas){
+        this.cuentas = new ArrayCuenta(maxCuentas);
+    }
+    
     
     public String getNombre() {
         return nombre;
@@ -44,6 +49,10 @@ public class Cliente {
         return apellido;
     }
 
+    public ArrayCuenta agetCuentas() {
+        return this.cuentas;
+    }
+    
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }

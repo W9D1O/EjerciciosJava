@@ -47,7 +47,10 @@ public class ArrayCuenta {
         }
     }
     
-    /*Cambiamos esto al final ahora obtenemos la posicion*/
+    /*Cambiamos esto al final ahora obtenemos la posicion
+    en base el numero de cuenta, es decir
+    mis cuenta se agregar de forma lineal pero el numero
+    de cuenta no se va a corresponder con el indice que ocupa*/
     public void eliminarCuenta(int numeroCuenta){
         int pos = this.getIndex(numeroCuenta);
         if (pos >= 0 && pos < this.dimL) {
