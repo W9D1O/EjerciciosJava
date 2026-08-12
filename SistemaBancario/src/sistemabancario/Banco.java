@@ -37,12 +37,57 @@ public class Banco {
         System.out.println("Ingrese numero de DNI: ");
         nuevo.setDni(scanner.nextInt());
         altaCuenta(nuevo);
+        this.clientes.agregarCliente(nuevo);
     }
     
     public void altaCuenta(Cliente unCliente){
-        Cuenta nueva = new Cuenta();
-        
-        
+        Cuenta nueva = new Cuenta(this.numeros.obtenerNumero());
+        unCliente.getCuentas().agregarCuenta(nueva);
+        this.cuentas.agregarCuenta(nueva);
     }
     
+
+    public Cliente buscarCliente(String apellido, String nombre) {
+
+        Cliente unCliente = this.clientes.getCliente(nombre, nombre);
+        return unCliente;
+    }
+    
+    public Cliente buscarCliente(int dni) {
+        Cliente unCliente = this.clientes.getCliente(dni);
+        return unCliente;
+    }
+    
+    public Cuenta buscarCuenta(int numeroCuenta) {
+        int i = this.cuentas.getIndex(numeroCuenta);
+        Cuenta unaCuenta = null;
+        if (i >= 0) unaCuenta = this.cuentas.getCuenta(i);
+        return unaCuenta;
+    }
+    
+    public void realizarTransferencia(int numeroOrigen, int numeroDestino,
+                                        float monto, String fecha) {
+        int i = this.cuentas.getIndex(numeroOrigen);
+        int j = this.cuentas.getIndex(numeroDestino);
+        if (i >= 0 && j >= 0) {
+        this.cuentas.getCuenta(i)
+        .transferirDinero(monto, fecha, numeroDestino);
+        this.cuentas.getCuenta(j)
+        .recibirTranferencia(monto, numeroOrigen, fecha);
+        }
+    }
+    
+    public void realizarDeposito(float monto, String fecha, int numeroCuenta) {
+        int i = this.cuentas.getIndex(numeroCuenta);
+        if (i >= 0) {
+            this.cuentas.getCuenta(i).depositarDinero(monto, fecha);
+        }
+    }
+    
+    public void relizarExtraccion(float monto, String fecha, int numeroCuenta) {
+        int i = this.cuentas.getIndex(numeroCuenta);
+        if (i >= 0) {
+            this.cuentas.getCuenta(i).extraerDinero(monto, fecha);
+        } 
+    }
 }

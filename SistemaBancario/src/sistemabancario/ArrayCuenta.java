@@ -63,4 +63,13 @@ public class ArrayCuenta {
         
     }
     
+    @Override
+    public String toString() {
+        String cuentasString = "";
+        for (int i = 0; i < this.dimL; i++) {
+            cuentasString += this.array[i].toString() + "\n";
+        }
+        return cuentasString;
+    }
+    
 }

@@ -5,6 +5,7 @@
  */
 package sistemabancario;
 
+
 /**
  *
  * @author w9d1o
@@ -113,5 +114,19 @@ public class Cuenta {
         return numero;
     }
     
+    //TODO: cambiar dimF por dimL
+    public String historialMovimientos(){
+        String historial = "";
+        for (int i = 0; i < this.dimF; i++) {
+            historial += this.movimiento[i].toString();
+        }
+        return historial;
+    }
     
+    @Override
+    public String toString() {
+        return "Numero de cuenta: " + this.numero +
+                "\nSaldo disponible: " + this.saldo +
+                        "\nMovimientos: " + historialMovimientos();
+    }
 }

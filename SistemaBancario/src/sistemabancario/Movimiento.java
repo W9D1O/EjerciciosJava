@@ -54,6 +54,18 @@ public class Movimiento {
         return numeroDestino;
     }
     
-    
+    @Override
+    public String toString() {
+        String fecha = "Fecha: " + this.fecha + "\n";
+        String tipo = "Tipo: " + this.tipo + "\n";
+        String numeroOrigen = "Numero de origen: " + this.numeroOrigen + "\n";
+        String numeroDestino = "Numero de Destino: " + this.numeroDestino + "\n";
+        String saldo = "Saldo de la operacion: " + this.monto + "\n";
+        String saldoRestante = "Saldo resultante de la operacion: " +
+                this.saldoRestante + "\n";
+        return fecha + tipo + numeroOrigen + numeroDestino + saldo +
+                saldoRestante + "\n";
+   
+    }
             
 }
