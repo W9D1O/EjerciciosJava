@@ -70,10 +70,12 @@ public class Banco {
         int i = this.cuentas.getIndex(numeroOrigen);
         int j = this.cuentas.getIndex(numeroDestino);
         if (i >= 0 && j >= 0) {
-        this.cuentas.getCuenta(i)
+        float valor = this.cuentas.getCuenta(i)
         .transferirDinero(monto, fecha, numeroDestino);
+        if (valor > 0) {
         this.cuentas.getCuenta(j)
         .recibirTranferencia(monto, numeroOrigen, fecha);
+        }
         }
     }
     

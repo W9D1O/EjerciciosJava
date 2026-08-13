@@ -53,24 +53,41 @@ public class Cuenta {
         
     }
     
+    private String operacionNoRealizada() {
+        return "Error: No se pudo realizar la operacion." +
+                " Intentelo mas tarde.";
+    }
+    
+    private float aPositivo(float valor) {
+        if (valor < 0) valor *= -1;
+        return valor;
+    }
+    
+    
     // No creo que pedir la fecha este bien pero por el momento sirve
     public void depositarDinero(float valor, String fecha){
-        if (hayLugar()) {
+        valor = aPositivo(valor);
+        boolean vf = hayLugar();
+        if (vf) {
             this.saldo += valor;
             Movimiento nuevo = new Movimiento(valor,this.saldo,fecha,"Deposito",
                     this.numero,this.numero);
             this.agregarMovimiento(nuevo);
+        } else {
+            System.out.println(operacionNoRealizada());
+            } 
         }
         
-    }
     
     
     private String saldoInsuficiente(){
         return "ERROR: Saldo insuficiente. Transaccion Cancelada.";
     }
     
+
     public void extraerDinero(float valor, String fecha){
-        if (this.saldo >= valor && hayLugar()) {
+        valor = aPositivo(valor);
+        if (this.saldo >= valor && valor > 0 && hayLugar()) {
             this.saldo -= valor;
             Movimiento nuevo = new Movimiento(valor,this.saldo,fecha,"Extraccion",
             this.numero,this.numero);
@@ -85,6 +102,7 @@ public class Cuenta {
     pero la pregunta es quien debe reciabir es destinatario.*/
     public float transferirDinero(float monto, String fecha, int numeroDestino){
         float resul = 0;
+        monto = aPositivo(monto);
         if (this.saldo >= monto && hayLugar()) {
             this.saldo -= monto;
             Movimiento nuevo = new Movimiento(monto,this.saldo,fecha,"Transferencia",
@@ -98,6 +116,7 @@ public class Cuenta {
     }
     
     public void recibirTranferencia(float valor, int numeroOrigen, String fecha) {
+        valor = aPositivo(valor);
         if (hayLugar()) {
             this.saldo += valor;
             Movimiento nuevo = new Movimiento(valor,this.saldo,fecha,"Transferencia",

@@ -22,7 +22,7 @@ public class ArrayCuenta {
     
     public Cuenta getCuenta(int posicion){
         Cuenta aux = null;
-        if (posicion > 0 && posicion < this.dimL) {
+        if (posicion >= 0 && posicion < this.dimL) {
             aux = this.array[posicion];
         }
         
