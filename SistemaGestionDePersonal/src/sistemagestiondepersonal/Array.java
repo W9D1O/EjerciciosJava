@@ -5,6 +5,8 @@
  */
 package sistemagestiondepersonal;
 
+import static sistemagestiondepersonal.Empleado.aPositivo;
+
 /**
  *
  * @author w9d1o
@@ -14,6 +16,7 @@ public class Array {
     private int dimL;
     
     public Array(int max) {
+        max = aPositivo(max);
         this.max = max;
         this.dimL = 0;
     }

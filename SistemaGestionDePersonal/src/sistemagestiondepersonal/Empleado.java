@@ -5,7 +5,7 @@
  */
 package sistemagestiondepersonal;
 
-import java.math.BigDecimal;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -17,19 +17,18 @@ public class Empleado {
     private String nombre;
     private String apellido;
     private int dni;
-    private BigDecimal base;
-    private BigDecimal sueldo;
+    private double base;
+    private double sueldo;
     private LocalDate fechaIngreso;
     
     public Empleado(String nombre, String apellido, int dni,
-            BigDecimal sueldoBase, LocalDate fechaDeIngreso){
+            double sueldoBase, LocalDate fechaDeIngreso){
         
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = aPositivo(dni);
-        /*BigDecimal trae coomo metodo valar absoluto, con eso me quedo
-        traquilo que no voy a cargar sueldosa base negativos*/
-        this.base = sueldoBase.abs();
+
+        this.base = aPositivo(sueldoBase);
         this.sueldo = this.base;
         this.fechaIngreso = fechaDeIngreso;
     }
@@ -39,15 +38,20 @@ public class Empleado {
         if (valor < 0) valor *= -1;
         return valor;
     }
-
-    public BigDecimal getBase() {
+    
+    public static double aPositivo(double valor) {
+        if (valor < 0) valor *= -1;
+        return valor;
+    }
+    
+    public double getBase() {
         return base;
     }
     
     /*Este metodo me trae muchas dudas, pero si no lo tengo no puedo
     usar calcularSalario en las otras clases*/
-    public void setSalario(BigDecimal valor) {
-        valor = valor.abs();
+    public void setSalario(double valor) {
+        valor = aPositivo(valor);
         this.sueldo = valor;
     }
     
@@ -67,7 +71,7 @@ public class Empleado {
         return dni;
     }
 
-    public BigDecimal getSueldo() {
+    public double getSueldo() {
         return sueldo;
     }
 
@@ -76,8 +80,7 @@ public class Empleado {
     }
     
     public void setAumento(double porcentaje){
-        BigDecimal por = new BigDecimal(porcentaje).abs();
-        this.base.add(this.base.multiply(por));
+        this.base *= (porcentaje / 100);
     }
     
     public String getInformacion() {

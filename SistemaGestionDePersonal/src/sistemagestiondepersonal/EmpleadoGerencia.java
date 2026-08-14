@@ -5,7 +5,6 @@
  */
 package sistemagestiondepersonal;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -16,15 +15,14 @@ public class EmpleadoGerencia extends Empleado{
     double bono;
     
     public EmpleadoGerencia(String nombre, String apellido, int dni,
-            BigDecimal sueldoBase, LocalDate fechaDeIngreso, double bono) {
+            double sueldoBase, LocalDate fechaDeIngreso, double bono) {
         super(nombre,apellido,dni,sueldoBase,fechaDeIngreso);
         this.bono = bono;
     }
     
     @Override
     public void calcularSalario() {
-        BigDecimal bono = new BigDecimal(this.bono);
-        super.setSalario(super.getBase().add(bono));
+        super.setSalario(super.getBase() + this.bono);
     }
     
     

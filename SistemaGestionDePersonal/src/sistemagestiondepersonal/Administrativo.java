@@ -5,7 +5,6 @@
  */
 package sistemagestiondepersonal;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -13,17 +12,17 @@ import java.time.LocalDate;
  * @author w9d1o
  */
 public class Administrativo extends Empleado{
-    private BigDecimal adicional;
+    private double adicional;
     
     public Administrativo(String nombre, String apellido, int dni,
-            BigDecimal sueldoBase, LocalDate fechaIngreso, BigDecimal adicional) {
+            double sueldoBase, LocalDate fechaIngreso, double adicional) {
         super(nombre, apellido, dni, sueldoBase, fechaIngreso);
-        this.adicional = adicional.abs();
+        this.adicional = aPositivo(adicional);
     }
     
     @Override
     public void calcularSalario() {
-        BigDecimal total = super.getBase().add(adicional);
+        double total = super.getBase() + adicional;
         super.setSalario(total);
     }
 }
