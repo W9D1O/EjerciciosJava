@@ -39,10 +39,15 @@ public class Array {
         this.dimL--;
     }
     
+    /*Deberia ser obstractos pero no lo puedo usar*/
+    public int getIndex(int valor) {
+        return valor;
+    }
+    
     /* Elimina el elemento en la posicion
     despazando los elementos siguientes del array y
     disminuyendo el valor de dimLs*/
-    public void eliminar(int posicion) {
+    public void eliminarElemento(int posicion) {
         
     }
 }

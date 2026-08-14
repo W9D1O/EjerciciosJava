@@ -17,16 +17,23 @@ public class Venta {
     private String nombreProducto;
     private LocalDate fecha;
     private BigDecimal valor;
+    private int numeroVenta;
     private int unidades;
     
     public Venta(String nombreProducto, BigDecimal valor, int unidadesVendidas,
             LocalDate fecha) {
         this.nombreProducto = nombreProducto;
-        this.valor = valor;
+        this.valor = valor.abs();
         this.unidades = unidadesVendidas;
         this.fecha = fecha;
     }
 
+    public void setNumeroVenta(int numeroVenta) {
+        this.numeroVenta = numeroVenta;
+    }
+
+    
+    
     public String getNombreProducto() {
         return nombreProducto;
     }
@@ -42,6 +49,12 @@ public class Venta {
     public int getUnidades() {
         return unidades;
     }
+
+    public int getNumeroVenta() {
+        return numeroVenta;
+    }
+    
+    
     
     public BigDecimal ventaTotal() {
         BigDecimal total = new BigDecimal(0);
@@ -54,6 +67,7 @@ public class Venta {
     public String toString() {
         return "Fecha de Venta: " + this.fecha.format(DateTimeFormatter.ISO_DATE)
                 + "\nNombre de producto: " + this.nombreProducto +
+                "\nNumero de venta: " + this.numeroVenta +
                 "\nValor del prducto: " + this.valor.toPlainString() +
                 "\nUnidades vendidas: " + this.unidades +
                 "\nMonto total: " + ventaTotal().toPlainString();
