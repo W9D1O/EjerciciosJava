@@ -5,7 +5,6 @@
  */
 package sistemagestiondepersonal;
 
-import java.math.BigDecimal;
 
 /**
  *
@@ -56,10 +55,10 @@ public class ArrayVenta extends Array {
         }
     }
 
-    public BigDecimal totalArrayVenta() {
-        BigDecimal total = new BigDecimal(0);
+    public double totalArrayVenta() {
+        double total = 0;
         for (int i = 0; i < super.getOcupada(); i++) {
-            total.add(this.ventas[i].ventaTotal());
+            total += this.ventas[i].ventaTotal();
         }
         return total;
     }

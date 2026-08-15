@@ -5,7 +5,7 @@
  */
 package sistemagestiondepersonal;
 
-import java.math.BigDecimal;
+
 import java.time.LocalDate;
 
 /**
@@ -16,7 +16,7 @@ public class EmpleadoVenta extends Empleado{
     private ArrayVenta ventas;
     private double porcentajeComision;
     public EmpleadoVenta(String nombre, String apellido, int dni,
-            BigDecimal sueldoBase, LocalDate fechaDeIngreso,
+            double sueldoBase, LocalDate fechaDeIngreso,
             int maxVentas, double porcentajeComision) {
         super(nombre,apellido,dni,sueldoBase,fechaDeIngreso);
         ventas = new ArrayVenta(maxVentas);
@@ -27,15 +27,14 @@ public class EmpleadoVenta extends Empleado{
         this.ventas.agregarVenta(nueva);
     }
     
-    public BigDecimal calcularComision() {
-        BigDecimal porcentaje = new BigDecimal(this.porcentajeComision / 100);
-        BigDecimal comision = this.ventas.totalArrayVenta().multiply(porcentaje);
+    public double calcularComision() {
+        double comision = this.ventas.totalArrayVenta() * (this.porcentajeComision / 100);
         return  comision;
     }
     
     @Override
     public void calcularSalario() {
-        super.setSalario(super.getBase().add(calcularComision()));
+        super.setSalario(super.getBase() + (calcularComision()));
     }
     
     @Override

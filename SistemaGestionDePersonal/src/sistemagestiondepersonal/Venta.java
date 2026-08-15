@@ -5,9 +5,9 @@
  */
 package sistemagestiondepersonal;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import static sistemagestiondepersonal.Empleado.aPositivo;
 
 /**
  *
@@ -16,14 +16,14 @@ import java.time.format.DateTimeFormatter;
 public class Venta {
     private String nombreProducto;
     private LocalDate fecha;
-    private BigDecimal valor;
+    private double valor;
     private int numeroVenta;
     private int unidades;
     
-    public Venta(String nombreProducto, BigDecimal valor, int unidadesVendidas,
+    public Venta(String nombreProducto, double valor, int unidadesVendidas,
             LocalDate fecha) {
         this.nombreProducto = nombreProducto;
-        this.valor = valor.abs();
+        this.valor = aPositivo(valor);
         this.unidades = unidadesVendidas;
         this.fecha = fecha;
     }
@@ -42,7 +42,7 @@ public class Venta {
         return fecha;
     }
 
-    public BigDecimal getValor() {
+    public double getValor() {
         return valor;
     }
 
@@ -56,11 +56,8 @@ public class Venta {
     
     
     
-    public BigDecimal ventaTotal() {
-        BigDecimal total = new BigDecimal(0);
-        BigDecimal mul = new BigDecimal(this.unidades);
-        total.add(this.valor.multiply(mul));
-        return total;
+    public double ventaTotal() {
+        return this.valor * this.unidades;
     }
     
     @Override
@@ -68,9 +65,9 @@ public class Venta {
         return "Fecha de Venta: " + this.fecha.format(DateTimeFormatter.ISO_DATE)
                 + "\nNombre de producto: " + this.nombreProducto +
                 "\nNumero de venta: " + this.numeroVenta +
-                "\nValor del prducto: " + this.valor.toPlainString() +
+                "\nValor del prducto: " + this.valor +
                 "\nUnidades vendidas: " + this.unidades +
-                "\nMonto total: " + ventaTotal().toPlainString();
+                "\nMonto total: " + ventaTotal();
     }
     
 }
