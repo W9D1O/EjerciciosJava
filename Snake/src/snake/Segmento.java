@@ -4,7 +4,7 @@ package snake;
 
 
 public class Segmento {
-    private Vector posicion;
+    private Vector posicion; 
     
     public Segmento(int posX, int posY) {
         posicion = new Vector(posX, posY);
@@ -41,6 +41,8 @@ public class Segmento {
         this.posicion.setY(this.posicion.getY() + y);
     }
 
+
+    
     @Override
     public String toString() {
         return "Valor de x: " + this.posicion.getX() + ", " + "Valor de y: " +

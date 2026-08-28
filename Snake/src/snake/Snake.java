@@ -20,15 +20,22 @@ public class Snake {
     private void initCuerpo(Vector posicionInicial) {
         Nodo aux = new Nodo(new Segmento(posicionInicial));
         cuerpo = new Lista(aux);
-        cuerpo.agregarNodo(new Nodo(new Segmento(posicionInicial.getX() -1,
-                            posicionInicial.getY())));
-        cuerpo.agregarNodo(new Nodo(new Segmento(posicionInicial.getX() -2,
-                            posicionInicial.getY())));        
+        int x = posicionInicial.getX();
+        int y = posicionInicial.getY();
+        System.out.println(x);
+        x--;
+        System.out.println(x);
+        cuerpo.agregarNodo(new Nodo(new Segmento(x,y)));
+        x--;
+        System.out.println(x);
+        cuerpo.agregarNodo(new Nodo(new Segmento(x,y)));
+        x--;
+        cuerpo.agregarNodo(new Nodo(new Segmento(x,y)));
     }
     
     public void comer(Comida algunaComida) {
-        if (algunaComida.getX() == cuerpo.getPosicion().getX() &&
-                algunaComida.getY() == cuerpo.getPosicion().getY()) {
+        if (algunaComida.getX() == cuerpo.getPosicionInicial().getX() &&
+                algunaComida.getY() == cuerpo.getPosicionInicial().getY()) {
             comio = true;
         }
     }
@@ -55,9 +62,9 @@ public class Snake {
     
     public boolean hayColision(Vector maxP) {
         boolean vf = false;
-        if (cuerpo.getPosicion().getX() < 0 || cuerpo.getPosicion().getY() < 0
-                || cuerpo.getPosicion().getX() > maxP.getX() ||
-                cuerpo.getPosicion().getY() > maxP.getY()) {
+        if (cuerpo.getPosicionInicial().getX() < 0 || cuerpo.getPosicionInicial().getY() < 0
+                || cuerpo.getPosicionInicial().getX() > maxP.getX() ||
+                cuerpo.getPosicionInicial().getY() > maxP.getY()) {
             vf = true;
         }
         return cuerpoColision() || vf;
@@ -82,5 +89,9 @@ public class Snake {
         
     }
     
+    public Vector[] getPosiciones() {
+        return cuerpo.getPosiciones();
+    }
     
 }
+

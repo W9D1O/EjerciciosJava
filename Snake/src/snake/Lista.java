@@ -5,10 +5,12 @@ package snake;
 /* Puede que sea mejor llamarlo cuerpo*/
 public class Lista {
     private Nodo cabeza;
+    private int cantidad;
     private Nodo ult;
     
     public Lista(Nodo inicio) {
         cabeza = inicio;
+        cantidad = 1;
         ult = null;
     }
     
@@ -17,24 +19,33 @@ public class Lista {
         if(cabeza.getSig() == null) {
             cabeza.setSig(nodo);
             ult = nodo;
+            cantidad++;
         } else {
-            ult.setSig(ult);
+            ult.setSig(nodo);
             ult = nodo;
+            cantidad++;
         }
         
     }
-    
-    public Vector getPosicion() {
+
+    public Vector getPosicionInicial() {
         Vector pos = new Vector(cabeza.getUnidad().getX(),
                     cabeza.getUnidad().getY());
         return pos;
     }
     
-    public void avanzarLista() {
-        if (cabeza != null) {
-        cabeza = cabeza.getSig();
+    public Vector[] getPosiciones() {
+        Vector[] posiciones = new Vector[cantidad];
+        Nodo aux = cabeza;
+        for (int i = 0; i < cantidad; i++) {
+            posiciones[i] = new Vector(aux.getUnidad().getX(),
+                            aux.getUnidad().getY());
+            aux = aux.getSig();
         }
+        return posiciones;
     }
+    
+    
 
 
     /*Si dos elementos de la lista tenen los mismos
@@ -45,6 +56,7 @@ public class Lista {
         boolean vf = false;
         while (aux != null && aux.getUnidad().getX() != primerElemento.getX()
                 && aux.getUnidad().getY() != primerElemento.getY()) {
+            
             aux = aux.getSig();
         }
         if (aux != null) vf = true;
