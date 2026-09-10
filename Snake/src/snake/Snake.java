@@ -22,15 +22,11 @@ public class Snake {
         cuerpo = new Lista(aux);
         int x = posicionInicial.getX();
         int y = posicionInicial.getY();
-        System.out.println(x);
         x--;
-        System.out.println(x);
-        cuerpo.agregarNodo(new Nodo(new Segmento(x,y)));
-        x--;
-        System.out.println(x);
         cuerpo.agregarNodo(new Nodo(new Segmento(x,y)));
         x--;
         cuerpo.agregarNodo(new Nodo(new Segmento(x,y)));
+        x--;
     }
     
     public void comer(Comida algunaComida) {

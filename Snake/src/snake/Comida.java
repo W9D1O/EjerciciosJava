@@ -9,8 +9,8 @@ public class Comida {
     private final double radio = 15;
     
     public Comida(int posX, int posY) {
-        posicion.setX(posX);
-        posicion.setY(posY);
+        posicion = new Vector();
+        actualizarPosicion(posX,posY);
         estado = true;
     }
 

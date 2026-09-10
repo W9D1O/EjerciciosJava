@@ -3,26 +3,55 @@
 package snake;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import javax.swing.JFrame;
+import static snake.Time.getTime;
 
 public class Ventana extends JFrame {
-    private final int SIZE = 20;
-    private final int ALTO = 40;
-    private final int ANCHO = 30;
+
+    private boolean state;
+    private SnakeGraphic snake;
     
     
-    public Ventana(PanelJuego panel) {
+    
+    public Ventana(Snake snake, Color snakeColor,
+                    Color comidaColor,
+                    int alto, int ancho, int size) {
+        
         setTitle("Snake");
-        setSize(ALTO*SIZE,ANCHO*SIZE);
+        setSize(alto*size,ancho*size);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
-        this.add(panel);
+        this.snake = new SnakeGraphic(snake,snakeColor,size);
+        state = true;
     }
+    
+    public boolean isRunning() {
+        return state;
+    }
+    
+    public void setState(boolean state) {
+        this.state = state;
+    }
+    
+    public void draw(Graphics g) {
+        Graphics2D g2 = (Graphics2D)g;
+        //this.snake.drawSnake(g2);
+        g2.setBackground(Color.black);
+        g2.setColor(Color.black);
+        g2.fillRect(0, 0, getWidth(), getHeight());
+        this.snake.drawSnake(g2);
+    }
+    
+    public void update(double time) {
+        Image image = createImage(getWidth(),getHeight());
+        Graphics dbg = image.getGraphics();
+        this.draw(dbg);
+        getGraphics().drawImage(image, 0, 0, this);
+    }
+    
 
-    
-    
-    /*private void add(PanelJuego panel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
 }

@@ -1,5 +1,7 @@
 package snake;
 
+import java.awt.Color;
+
 
 
 
@@ -7,10 +9,13 @@ public class SnakeGame {
 
 
     public static void main(String[] args) {
-        Ventana ventana = new 
-        Ventana(new PanelJuego(new Snake(new Vector(20,15))));
 
+        Game game = new Game();
+        
+        Thread thread = new Thread(game);
+        thread.start();
         
     }
 
 }
+
