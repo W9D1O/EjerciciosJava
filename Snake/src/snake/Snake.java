@@ -29,11 +29,12 @@ public class Snake {
         x--;
     }
     
-    public void comer(Comida algunaComida) {
+    public boolean comer(Comida algunaComida) {
         if (algunaComida.getX() == cuerpo.getPosicionInicial().getX() &&
                 algunaComida.getY() == cuerpo.getPosicionInicial().getY()) {
             comio = true;
         }
+        return comio;
     }
     
     public void setDireccion(Vector dir) {
@@ -83,6 +84,10 @@ public class Snake {
         
         cuerpo.actualizarValores(direccion);
         
+    }
+    
+    public Vector getHeadPosicion() {
+        return cuerpo.getPosicionInicial();
     }
     
     public Vector[] getPosiciones() {

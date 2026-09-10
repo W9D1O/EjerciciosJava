@@ -7,16 +7,15 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.JFrame;
-import static snake.Time.getTime;
 
 public class Ventana extends JFrame {
 
     private boolean state;
     private SnakeGraphic snake;
+    private ComidaGraphics comida;
     
     
-    
-    public Ventana(Snake snake, Color snakeColor,
+    public Ventana(Snake snake, Comida comida, Color snakeColor,
                     Color comidaColor,
                     int alto, int ancho, int size) {
         
@@ -26,6 +25,7 @@ public class Ventana extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         this.snake = new SnakeGraphic(snake,snakeColor,size);
+        this.comida = new ComidaGraphics(comida,comidaColor);
         state = true;
     }
     
@@ -44,6 +44,7 @@ public class Ventana extends JFrame {
         g2.setColor(Color.black);
         g2.fillRect(0, 0, getWidth(), getHeight());
         this.snake.drawSnake(g2);
+        this.comida.draw(g2);
     }
     
     public void update(double time) {

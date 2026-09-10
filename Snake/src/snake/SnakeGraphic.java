@@ -22,7 +22,7 @@ public class SnakeGraphic {
     } 
         
     public void drawSnake(Graphics2D g) {
-        g.setColor(Color.GREEN);
+        g.setColor(color);
         Vector[] posiciones = snake.getPosiciones();
         for (int i = 0; i < posiciones.length; i++) {
             g.fillRect(normalizarCoordenadas(posiciones[i].getX()),

@@ -6,7 +6,9 @@ package snake;
 public class Comida {
     private Vector posicion;
     private boolean estado;
-    private final double radio = 15;
+    private final int radio = 15;
+    /* TODO: Aveces aparece medio fuera de la ventana,
+    abra que ver si necesita una 'offset'*/
     
     public Comida(int posX, int posY) {
         posicion = new Vector();
@@ -22,7 +24,14 @@ public class Comida {
         return posicion.getY();
     }
     
-
+    public int getRadio() {
+        return radio;
+    }
+    
+    public void setEstado(boolean vf) {
+        if (vf) estado = false;
+    }
+    
     public void actualizarPosicion(int maxX, int maxY) {
         
         posicion.setX((int) (Math.random() * maxX));
