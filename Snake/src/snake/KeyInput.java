@@ -12,15 +12,21 @@ public class KeyInput extends KeyAdapter implements KeyListener {
     
     @Override
     public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() < 128)
         keyPress[e.getKeyCode()] = true;
     }
     
     @Override
     public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode() < 128)
         keyPress[e.getKeyCode()] = false;
     }
     
     public boolean isKeyPressed(int keyCode) {
-        return keyPress[keyCode];
+        boolean vf = false;
+        if (keyCode < 128) {
+            vf = keyPress[keyCode];
+        }
+        return vf;
     }
 }

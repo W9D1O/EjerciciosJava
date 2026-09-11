@@ -19,7 +19,7 @@ public class ComidaGraphics {
     
     public void draw(Graphics2D g) {
         g.setColor(color);
-        g.fillOval(comida.getY()* scalar, comida.getY()*scalar, comida.getRadio(),
+        g.fillOval(comida.getX()* scalar, comida.getY()*scalar, comida.getRadio(),
                     comida.getRadio());
        
 

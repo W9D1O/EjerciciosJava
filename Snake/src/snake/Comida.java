@@ -12,8 +12,8 @@ public class Comida {
     
     public Comida(int posX, int posY) {
         posicion = new Vector();
+        estado = false;
         actualizarPosicion(posX,posY);
-        estado = true;
     }
 
     public int getX() {
@@ -29,13 +29,18 @@ public class Comida {
     }
     
     public void setEstado(boolean vf) {
+        System.out.println(vf);
         if (vf) estado = false;
     }
     
     public void actualizarPosicion(int maxX, int maxY) {
-        
-        posicion.setX((int) (Math.random() * maxX));
-        posicion.setY((int) (Math.random() * maxY));
+        if (!estado) {
+            int x = (int) (Math.random() * maxX);
+            int y = (int) (Math.random() * maxY);
+            posicion.setX(x);
+            posicion.setY(y);
+            estado = true;
+        }
     }
     
     

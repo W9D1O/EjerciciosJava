@@ -44,12 +44,24 @@ public class Game implements Runnable {
     }
     
     
-    public void mover() {
-        Vector dir = new Vector(1,0);
-
-        if (input.isKeyPressed(KeyEvent.VK_SPACE)) {
-            System.out.println("Hola a todos");
-        }
+    public Vector capturarInput() {
+        Vector dir;
+        if (input.isKeyPressed(KeyEvent.VK_W) ||
+                input.isKeyPressed(KeyEvent.VK_UP)) dir = new Vector(0,-1);
+        else if (input.isKeyPressed(KeyEvent.VK_S) ||
+                input.isKeyPressed(KeyEvent.VK_DOWN)) dir = new Vector(0,1);
+        else if (input.isKeyPressed(KeyEvent.VK_A) ||
+                input.isKeyPressed(KeyEvent.VK_LEFT)) dir = new Vector(-1,0);
+        else if (input.isKeyPressed(KeyEvent.VK_D) ||
+                input.isKeyPressed(KeyEvent.VK_RIGHT)) dir = new Vector(1,0);
+        else dir = new Vector(0,0);
+        
+        return dir;
+        
+    }
+    
+    public void input() {
+        this.snake.setDireccion(capturarInput());
     }
     
     @Override
@@ -62,7 +74,8 @@ public class Game implements Runnable {
                 se actualiza la ventana por el momento vamos a cheqauearlo
                 constantemente*/
                 this.snake.mover();
-                mover();
+                input();
+                comida.actualizarPosicion(ALTO, ANCHO);
                 comida.setEstado(this.snake.comer(comida));
                 this.snake.crecer();
                 double time = getTime();

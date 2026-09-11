@@ -50,16 +50,17 @@ public class Snake {
     public boolean comer(Comida algunaComida) {
         if (algunaComida.getX() == cuerpo.getPosicionInicial().getX() &&
                 algunaComida.getY() == cuerpo.getPosicionInicial().getY()) {
-            comio = true;
+                comio = true;
         }
         return comio;
     }
     
     public void setDireccion(Vector dir) {
-        if (direccion.getX() * -1 != dir.getX() ||
-                direccion.getY() * -1 != dir.getY()) {
-            direccion = dir;
-            System.out.println(direccion.getX() + " " + direccion.getY());
+        if (dir.getX() != 0 || dir.getY() != 0 ){
+            if (direccion.getX() * -1 != dir.getX() ||
+                    direccion.getY() * -1 != dir.getY()) {
+                direccion = dir;
+            }
         }
     }
     
