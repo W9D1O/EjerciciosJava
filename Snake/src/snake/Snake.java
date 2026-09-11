@@ -9,10 +9,15 @@ public class Snake {
     private Vector colaPosAnt;
     private boolean reposo;
     private Vector direccion;
+    private int velocidad;
+    private int acumulador;
+    
     
     public Snake(Vector posicionInicial) {
         comio = false;
         reposo = true;
+        velocidad = 400;
+        acumulador = 0;
         direccion = new Vector(1,0);
         initCuerpo(posicionInicial);
     }
@@ -27,6 +32,19 @@ public class Snake {
         x--;
         cuerpo.agregarNodo(new Nodo(new Segmento(x,y)));
         x--;
+    }
+    
+    private void aumentarAcu() {
+        this.acumulador += velocidad;
+    }
+    
+    
+    /* No se me acurre que nombre ponerle, digamos que lo libera para que se
+    pueda mover*/
+    private boolean liberar() {
+        boolean vf = false;
+        if (acumulador >= 100000) vf = true;
+        return vf;
     }
     
     public boolean comer(Comida algunaComida) {
@@ -53,24 +71,15 @@ public class Snake {
         }
     }
     
-    private boolean cuerpoColision() {
+    public boolean cuerpoColision() {
         return cuerpo.identicaPosicion();
     }
     
-    public boolean hayColision(Vector maxP) {
-        boolean vf = false;
-        if (cuerpo.getPosicionInicial().getX() < 0 || cuerpo.getPosicionInicial().getY() < 0
-                || cuerpo.getPosicionInicial().getX() > maxP.getX() ||
-                cuerpo.getPosicionInicial().getY() > maxP.getY()) {
-            vf = true;
-        }
-        return cuerpoColision() || vf;
-    }
-    
-    
+
     public void mover() {
         Segmento aux = cuerpo.ultimoElemento().getUnidad();
         if (reposo) {
+            aumentarAcu();
             reposo = false;
             /*Averiguar con recpecto a los objetos primitivos(creo que se llaman
             asi), si al copiarlo se copian por valor, entiendo que si
@@ -78,11 +87,18 @@ public class Snake {
             ult.getSegmento*/
             colaPosAnt = new Vector(aux.getX(),aux.getY());
         } else {
+            aumentarAcu();
+ 
             colaPosAnt.setX(aux.getX());
             colaPosAnt.setY(aux.getY());
+
+            
         }
         
+        if (liberar()) {
         cuerpo.actualizarValores(direccion);
+        acumulador = 0;
+        }
         
     }
     

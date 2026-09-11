@@ -25,7 +25,7 @@ public class Ventana extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         this.snake = new SnakeGraphic(snake,snakeColor,size);
-        this.comida = new ComidaGraphics(comida,comidaColor);
+        this.comida = new ComidaGraphics(comida,comidaColor,size);
         state = true;
     }
     

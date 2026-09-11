@@ -3,6 +3,7 @@
 package snake;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import static snake.Time.getTime;
 
 
@@ -21,8 +22,35 @@ public class Game implements Runnable {
         ventana = new Ventana(snake, comida,
                     Color.LIGHT_GRAY,
                     Color.RED, ALTO, ANCHO, SIZE);
+        
+        this.input = new KeyInput();
+        ventana.addKeyListener(input);
+        ventana.setFocusable(true);
+        ventana.requestFocusInWindow();
     }
     
+    
+    public boolean hayColision() {
+        boolean vf = false;
+        int maxX = ventana.getWidth() / SIZE;
+        int maxY = ventana.getHeight() / SIZE;
+        if (snake.getHeadPosicion().getX() < 0 || 
+                snake.getHeadPosicion().getY() < 0 ||
+                snake.getHeadPosicion().getX() > maxX ||
+                snake.getHeadPosicion().getY() > maxY) {
+            vf = true;
+        }
+        return snake.cuerpoColision() || vf;
+    }
+    
+    
+    public void mover() {
+        Vector dir = new Vector(1,0);
+
+        if (input.isKeyPressed(KeyEvent.VK_SPACE)) {
+            System.out.println("Hola a todos");
+        }
+    }
     
     @Override
     public void run() {
@@ -33,6 +61,8 @@ public class Game implements Runnable {
                 constantemente o si lo tendria que hacer caba veaz que
                 se actualiza la ventana por el momento vamos a cheqauearlo
                 constantemente*/
+                this.snake.mover();
+                mover();
                 comida.setEstado(this.snake.comer(comida));
                 this.snake.crecer();
                 double time = getTime();
