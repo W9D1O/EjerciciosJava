@@ -18,7 +18,7 @@ public class Game implements Runnable {
     
     public Game() {
         this.snake = new Snake(new Vector(ANCHO/2,ALTO/2));
-        this.comida = new Comida(ANCHO,ALTO);
+        this.comida = new Comida(ANCHO,ALTO,snake.getPosiciones());
         ventana = new Ventana(snake, comida,
                     Color.LIGHT_GRAY,
                     Color.RED, ALTO, ANCHO, SIZE);
@@ -75,8 +75,15 @@ public class Game implements Runnable {
                 constantemente*/
                 this.snake.mover();
                 input();
-                comida.actualizarPosicion(ALTO, ANCHO);
-                comida.setEstado(this.snake.comer(comida));
+                if (hayColision()) {
+                    ventana.stop();
+                }
+                if(this.snake.comer(comida)) {
+                    for (int i = 0; i < 20; i++) System.out.println();
+                    comida.setEstado(this.snake.comer(comida));
+                    comida.actualizarPosicion(ANCHO, ALTO,snake.getPosiciones());
+                    
+                }
                 this.snake.crecer();
                 double time = getTime();
                 double deltaTime = time - lastFrameTime;

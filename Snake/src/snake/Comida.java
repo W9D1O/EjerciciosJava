@@ -10,10 +10,10 @@ public class Comida {
     /* TODO: Aveces aparece medio fuera de la ventana,
     abra que ver si necesita una 'offset'*/
     
-    public Comida(int posX, int posY) {
+    public Comida(int posX, int posY, ArrayVector posOcupadas) {
         posicion = new Vector();
         estado = false;
-        actualizarPosicion(posX,posY);
+        actualizarPosicion(posX,posY,posOcupadas);
     }
 
     public int getX() {
@@ -29,14 +29,15 @@ public class Comida {
     }
     
     public void setEstado(boolean vf) {
-        System.out.println(vf);
         if (vf) estado = false;
     }
     
-    public void actualizarPosicion(int maxX, int maxY) {
+    public void actualizarPosicion(int maxX, int maxY, ArrayVector posOcupadas) {
+        System.out.println("x: " + maxX + " y: " + maxY);
         if (!estado) {
-            int x = (int) (Math.random() * maxX);
-            int y = (int) (Math.random() * maxY);
+            int x = (int) (Math.random() * (maxX - 1));
+            int y = (int) (Math.random() * (maxY - 1));
+            
             posicion.setX(x);
             posicion.setY(y);
             estado = true;

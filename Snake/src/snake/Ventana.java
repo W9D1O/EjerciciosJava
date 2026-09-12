@@ -54,5 +54,7 @@ public class Ventana extends JFrame {
         getGraphics().drawImage(image, 0, 0, this);
     }
     
-
+    public void stop() {
+        this.state = false;
+    }
 }

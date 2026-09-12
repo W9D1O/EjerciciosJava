@@ -16,7 +16,7 @@ public class Snake {
     public Snake(Vector posicionInicial) {
         comio = false;
         reposo = true;
-        velocidad = 400;
+        velocidad = 800;
         acumulador = 0;
         direccion = new Vector(1,0);
         initCuerpo(posicionInicial);
@@ -31,7 +31,6 @@ public class Snake {
         cuerpo.agregarNodo(new Nodo(new Segmento(x,y)));
         x--;
         cuerpo.agregarNodo(new Nodo(new Segmento(x,y)));
-        x--;
     }
     
     private void aumentarAcu() {
@@ -107,7 +106,7 @@ public class Snake {
         return cuerpo.getPosicionInicial();
     }
     
-    public Vector[] getPosiciones() {
+    public ArrayVector getPosiciones() {
         return cuerpo.getPosiciones();
     }
     

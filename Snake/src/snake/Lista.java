@@ -34,12 +34,12 @@ public class Lista {
         return pos;
     }
     
-    public Vector[] getPosiciones() {
-        Vector[] posiciones = new Vector[cantidad];
+    public ArrayVector getPosiciones() {
+        ArrayVector posiciones = new ArrayVector(cantidad);
         Nodo aux = cabeza;
         for (int i = 0; i < cantidad; i++) {
-            posiciones[i] = new Vector(aux.getUnidad().getX(),
-                            aux.getUnidad().getY());
+            posiciones.agregarElemento(new Vector(aux.getUnidad().getX(),
+            aux.getUnidad().getY()));
             aux = aux.getSig();
         }
         return posiciones;
@@ -53,10 +53,9 @@ public class Lista {
     public boolean identicaPosicion() {
         Segmento primerElemento = cabeza.getUnidad();
         Nodo aux = cabeza.getSig();
-        boolean vf = false;
-        while (aux != null && aux.getUnidad().getX() != primerElemento.getX()
-                && aux.getUnidad().getY() != primerElemento.getY()) {
-            
+        boolean vf = false;        
+        while (aux != null && (aux.getUnidad().getX() != primerElemento.getX()
+                || aux.getUnidad().getY() != primerElemento.getY())) {
             aux = aux.getSig();
         }
         if (aux != null) vf = true;
