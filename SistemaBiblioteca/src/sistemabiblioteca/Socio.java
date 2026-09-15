@@ -7,11 +7,13 @@ public class Socio {
     private String nombre;
     private int dni;
     private int id;
+    private CupoPrestamo prestamos;
     
-    public Socio(String nombre, int dni, int id) {
+    public Socio(String nombre, int dni, int id, int maxCupo) {
         this.nombre = nombre;
         this.dni = dni;
         this.id = id;
+        this.prestamos = new CupoPrestamo(maxCupo);
     }
     
     public String getNombre() {
@@ -25,4 +27,5 @@ public class Socio {
     public int getId() {
         return this.id;
     }
+    
 }

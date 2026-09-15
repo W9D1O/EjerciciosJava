@@ -2,17 +2,20 @@
 
 package sistemabiblioteca;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 public class Prestamo {
     private Libro unLibro;
-    private Socio unSocio;
     private int idPrestamo;
+    private final LocalDate fechaEntrega = LocalDate.now();
     
     
-    public Prestamo(Libro unLibro, Socio unSocio) {
+    public Prestamo(Libro unLibro) {
         this.unLibro = unLibro;
-        this.unSocio = unSocio;
-    }
+            
+        }
     
     public int getId() {
         return this.idPrestamo;
@@ -21,7 +24,8 @@ public class Prestamo {
     @Override
     public String toString() {
         return "Prestamo Numero: " + this.getId() + "\n"
-                + this.unLibro.toString() + "\n" +
-                this.unSocio.toString();
+                + " Fecha de entrega: " + 
+                this.fechaEntrega.format(DateTimeFormatter.ISO_DATE)
+                + this.unLibro.toString() + "\n";
     }
 }
