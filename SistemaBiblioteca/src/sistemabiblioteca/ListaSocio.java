@@ -13,10 +13,15 @@ public class ListaSocio {
         this.socios = new ArrayList <> ();
     }
     
+    private boolean identico(Socio unSocio, Socio otroSocio) {
+        return unSocio.getNombre().equalsIgnoreCase(otroSocio.getNombre()) &&
+                unSocio.getDni() == otroSocio.getDni();
+    }
+    
     private boolean existe(Socio unSocio) {
         boolean vf = false;
         for (Socio socio: socios) {
-            if (socio.equals(unSocio)) return true;
+            if (identico(socio,unSocio)) return true;
         }
         return vf;
     }

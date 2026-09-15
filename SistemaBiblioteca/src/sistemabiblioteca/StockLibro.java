@@ -3,13 +3,13 @@
 package sistemabiblioteca;
 
 
-public class Ejemplar {
+public class StockLibro {
     private final Libro unLibro;
     private final int cantidad;
     private int disponible;
     
     
-    public Ejemplar(Libro unLibro, int cantidad) {
+    public StockLibro(Libro unLibro, int cantidad) {
         this.unLibro = unLibro;
         this.cantidad = cantidad;
     }
@@ -30,7 +30,11 @@ public class Ejemplar {
         }
     }
     
-    public boolean equals(Libro unLibro) {
+    
+    /*Parece que el ISBN es unico para cada edicion, por lo tanto
+    vamos asumir por el momento que esta biblioteca tiene todos
+    sus libros de la misma edicion.*/
+    public boolean identico(Libro unLibro) {
         return this.unLibro.getAutor().equals(unLibro.getAutor()) &&
                 this.unLibro.getISBN().equals(unLibro.getISBN()) &&
                 this.unLibro.getTitulo().equals(unLibro.getTitulo());

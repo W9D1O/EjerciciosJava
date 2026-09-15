@@ -4,11 +4,12 @@ package sistemabiblioteca;
 
 
 public class Biblioteca {
-    private ListaEjemplar ejemplares;
+    private ListaLibro ejemplares;
     private ListaSocio socios;
     
     public Biblioteca() {
-        this.ejemplares = new ListaEjemplar();
+        this.ejemplares = new ListaLibro();
+        this.socios = new ListaSocio();
 
     }
     

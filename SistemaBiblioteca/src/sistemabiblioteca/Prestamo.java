@@ -8,14 +8,18 @@ import java.time.format.DateTimeFormatter;
 
 public class Prestamo {
     private Libro unLibro;
-    private int idPrestamo;
+    private static int idPrestamo;
     private final LocalDate fechaEntrega = LocalDate.now();
     
     
     public Prestamo(Libro unLibro) {
         this.unLibro = unLibro;
-            
+        idPrestamo = generarId();    
         }
+    
+    private int generarId() {
+        return (int)(Math.random() * (Integer.MAX_VALUE - 1));
+    }
     
     public int getId() {
         return this.idPrestamo;

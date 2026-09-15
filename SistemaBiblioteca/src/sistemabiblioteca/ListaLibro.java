@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListaEjemplar {
-    private List<Ejemplar> libros;
+public class ListaLibro {
+    private List<StockLibro> libros;
     
-    public ListaEjemplar() {
+    public ListaLibro() {
          this.libros = new ArrayList <> ();
     }
     
     public void agregarLibro(Libro unLibro, int cantidad) {
         if (!existe(unLibro)) {
-            this.libros.add(new Ejemplar(unLibro,cantidad));
+            this.libros.add(new StockLibro(unLibro,cantidad));
         } else {
             System.out.println("Error: el libro que intenta cargar ya existe.");
         }
@@ -23,7 +23,7 @@ public class ListaEjemplar {
     
     private boolean existe(Libro unLibro) {
         boolean vf = false;
-        for (Ejemplar libro: this.libros) {
+        for (StockLibro libro: this.libros) {
             if (libro.equals(unLibro)) return true;
         }
         return vf;
@@ -33,8 +33,8 @@ public class ListaEjemplar {
     para mejorarlo*/
     public boolean isDisponible(Libro unLibro) {
         boolean vf = false;
-        for (Ejemplar libro: this.libros) {
-            if (libro.equals(unLibro)) {
+        for (StockLibro libro: this.libros) {
+            if (libro.identico(unLibro)) {
                 return libro.isDisponible();
             }
         }
