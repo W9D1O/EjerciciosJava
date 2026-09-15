@@ -2,30 +2,32 @@
 
 package sistemabiblioteca;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class Biblioteca {
-    private List<Ejemplar> libros;
-    private List<Socio> socios;
+    private ListaEjemplar ejemplares;
+    private ListaSocio socios;
     
     public Biblioteca() {
-        this.libros = new ArrayList <> ();
-        this.socios = new ArrayList <> ();
+        this.ejemplares = new ListaEjemplar();
+
     }
     
 
-    public void agregarLibro(Libro unLibro, int cantidad) {
-        this.libros.add(new Ejemplar(unLibro,cantidad));
-    }
-    
+
     public void altaSocio(Socio unSocio) {
-        
-        this.socios.add(unSocio);
+        this.socios.addSocio(unSocio);
+
     }
     
-    public void altaPrestamo() {
-        
+
+    
+    
+    /* Necesito generar el id del prestamo, lo me queda claro donde lo tengo que
+    generar.*/
+    public void altaPrestamo(Libro unLibro, Socio unSocio) {
+        if (this.ejemplares.isDisponible(unLibro)) {
+            Prestamo prestamo = new Prestamo(unLibro);
+            
+        }
     }
 }

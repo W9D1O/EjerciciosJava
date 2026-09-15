@@ -38,8 +38,14 @@ public class Socio {
     
     /*Puede que esto no sea el lugar correcto para este metodo
     pero por el momento lo voy a dejar de esta manera*/
-    public boolean equals(String nombre, int dni, int id) {
-        return this.nombre.equals(nombre) && this.dni == dni &&
-                this.id == id;
+    public boolean equals(Socio unSocio) {
+        return this.nombre.equals(unSocio.nombre) && this.dni == unSocio.dni &&
+                this.id == unSocio.id;
+        /*cambien los argumentos anteriores po unSocio, estoy asumiento que
+        dado que estoy desde la misma clase puede acceder a las variables
+        de instancia, ademas por como lo estoy haciendo estoy diciendo que 
+        si los valores de los atributos sin iguales es el mismo objeto
+        por mas que la referencia no sea la misma imagino que esta mal pero por
+        el momento soluciono el problema de tener socios repetidos*/
     }
 }
