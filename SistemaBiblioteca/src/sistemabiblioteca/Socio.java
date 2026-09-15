@@ -27,5 +27,19 @@ public class Socio {
     public int getId() {
         return this.id;
     }
+
+    public void setPrestamo(Prestamo unPrestamo) {
+        this.prestamos.recibirPrestamo(unPrestamo);
+    }
     
+    public Prestamo devolverPrestamo(int idPrestamo) {
+        return this.prestamos.liberarPrestamo(idPrestamo);
+    }
+    
+    /*Puede que esto no sea el lugar correcto para este metodo
+    pero por el momento lo voy a dejar de esta manera*/
+    public boolean equals(String nombre, int dni, int id) {
+        return this.nombre.equals(nombre) && this.dni == dni &&
+                this.id == id;
+    }
 }

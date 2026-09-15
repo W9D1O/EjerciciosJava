@@ -24,6 +24,8 @@ public class CupoPrestamo {
         if (!isCompleto()) {
             this.prestamos[this.cantidad] = unPrestamo;
             this.cantidad++;
+        } else {
+            System.out.println("Error: No hay cupo disponible.");
         }
     }
     
@@ -35,12 +37,21 @@ public class CupoPrestamo {
         return pos;
     }
     
-    public void liberarPrestamo(int idPrestamo) {
+    public Prestamo liberarPrestamo(int idPrestamo) {
+        Prestamo devolucion = null;
         int pos = posicionPrestamo(idPrestamo);
         if (pos != -1) {
-            for (int i = pos; i < this.cantidad - 1; i++) {
-                this.prestamos[i] = this.prestamos[i + 1];
+            if (pos + 1 == this.cantidad) this.cantidad--;
+            else {
+                devolucion = this.prestamos[pos];
+                for (int i = pos; i < this.cantidad - 1; i++) {
+                    this.prestamos[i] = this.prestamos[i + 1];
+                }
+
             }
+        } else {
+            System.out.println("El Id ingresado no existe.");
         }
+        return devolucion;
     }
 }

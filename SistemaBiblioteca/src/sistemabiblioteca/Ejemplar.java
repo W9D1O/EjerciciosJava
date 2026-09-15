@@ -30,6 +30,12 @@ public class Ejemplar {
         }
     }
     
+    public boolean equals(Libro unLibro) {
+        return this.unLibro.getAutor().equals(unLibro.getAutor()) &&
+                this.unLibro.getISBN().equals(unLibro.getISBN()) &&
+                this.unLibro.getTitulo().equals(unLibro.getTitulo());
+    }
+    
     @Override
     public String toString() {
         return this.unLibro + "\n" +

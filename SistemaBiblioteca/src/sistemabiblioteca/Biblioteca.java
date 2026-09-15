@@ -9,7 +9,6 @@ import java.util.List;
 public class Biblioteca {
     private List<Ejemplar> libros;
     private List<Socio> socios;
-    private List <Prestamo> prestamos;
     
     public Biblioteca() {
         this.libros = new ArrayList <> ();
@@ -24,5 +23,9 @@ public class Biblioteca {
     public void altaSocio(Socio unSocio) {
         
         this.socios.add(unSocio);
+    }
+    
+    public void altaPrestamo() {
+        
     }
 }
