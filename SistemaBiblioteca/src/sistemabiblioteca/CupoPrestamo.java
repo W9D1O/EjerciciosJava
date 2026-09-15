@@ -16,17 +16,14 @@ public class CupoPrestamo {
         this.cantidad = 0;
     }
     
-    private boolean isCompleto() {
+    public boolean isCompleto() {
         return this.cantidad == this.maxCupo;
     }
     
     public void recibirPrestamo(Prestamo unPrestamo) {
-        if (!isCompleto()) {
-            this.prestamos[this.cantidad] = unPrestamo;
-            this.cantidad++;
-        } else {
-            System.out.println("Error: No hay cupo disponible.");
-        }
+        this.prestamos[this.cantidad] = unPrestamo;
+        this.cantidad++;
+
     }
     
     private int posicionPrestamo(int idPrestamo) {

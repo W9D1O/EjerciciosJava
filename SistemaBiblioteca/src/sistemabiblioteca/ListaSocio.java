@@ -18,6 +18,13 @@ public class ListaSocio {
                 unSocio.getDni() == otroSocio.getDni();
     }
     
+    private Socio getSocio(int idSocio) {
+        for (Socio socio: this.socios) {
+            if (socio.getId() == idSocio) return socio;
+        }
+        return null;
+    }
+    
     private boolean existe(Socio unSocio) {
         boolean vf = false;
         for (Socio socio: socios) {
@@ -26,12 +33,27 @@ public class ListaSocio {
         return vf;
     }
     
-    public void addSocio(Socio unSocio) {
+    public boolean addSocio(Socio unSocio) {
         if (!existe(unSocio)) {
             this.socios.add(unSocio);
+            return true;
         } else {
             System.out.println("El socio ingresado ya existe.");
+            return false;
         }
 
+    }
+    
+    public boolean hayCupo(int idSocio) {
+        for (Socio socio: socios) {
+            if (socio.getId() == idSocio) {
+                return socio.hayCupo();
+            }
+        }
+        return false;
+    }
+    
+    public void addPrestamo(Prestamo prestamo, int idSocio) {
+        getSocio(idSocio).addPrestamo(prestamo);
     }
 }

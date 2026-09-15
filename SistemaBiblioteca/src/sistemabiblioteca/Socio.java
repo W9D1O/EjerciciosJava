@@ -27,8 +27,12 @@ public class Socio {
     public int getId() {
         return this.id;
     }
+    
+    public boolean hayCupo() {
+        return this.prestamos.isCompleto();
+    }
 
-    public void setPrestamo(Prestamo unPrestamo) {
+    public void addPrestamo(Prestamo unPrestamo) {
         this.prestamos.recibirPrestamo(unPrestamo);
     }
     

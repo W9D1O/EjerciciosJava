@@ -21,20 +21,26 @@ public class ListaLibro {
         }
     }
     
+    public Libro getLibro(String isbn) {
+        for (StockLibro libro: this.libros) {
+            if (libro.identico(isbn)) return libro.getLibro();
+        }
+        return null;
+    }
+    
     private boolean existe(Libro unLibro) {
         boolean vf = false;
-        for (StockLibro libro: this.libros) {
-            if (libro.equals(unLibro)) return true;
-        }
+
+        if (getLibro(unLibro.getISBN()) != null) return true;
         return vf;
     }
     
     /* Codigo casi repetido, tendria que ver como puedo hacer
     para mejorarlo*/
-    public boolean isDisponible(Libro unLibro) {
+    public boolean isDisponible(String isbn) {
         boolean vf = false;
         for (StockLibro libro: this.libros) {
-            if (libro.identico(unLibro)) {
+            if (libro.identico(isbn)) {
                 return libro.isDisponible();
             }
         }

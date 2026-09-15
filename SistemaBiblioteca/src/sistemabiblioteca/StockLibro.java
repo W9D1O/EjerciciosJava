@@ -30,6 +30,9 @@ public class StockLibro {
         }
     }
     
+    public Libro getLibro() {
+        return this.unLibro;
+    }
     
     /*Parece que el ISBN es unico para cada edicion, por lo tanto
     vamos asumir por el momento que esta biblioteca tiene todos
@@ -38,6 +41,10 @@ public class StockLibro {
         return this.unLibro.getAutor().equals(unLibro.getAutor()) &&
                 this.unLibro.getISBN().equals(unLibro.getISBN()) &&
                 this.unLibro.getTitulo().equals(unLibro.getTitulo());
+    }
+    
+    public boolean identico(String isbn) {
+        return this.unLibro.getISBN().equals(isbn);
     }
     
     @Override
