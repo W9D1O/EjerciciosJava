@@ -40,5 +40,15 @@ public class Socio {
         return this.prestamos.liberarPrestamo(idPrestamo);
     }
     
+    
+    public void listaPrestamo() {
+        System.out.println(this.prestamos.toString());
+    }
 
+    @Override
+    public String toString() {
+        return "Nombre: " + this.nombre + "\nNumero de DNI: " +
+                this.dni + "\nNumero de Socio: " + this.id + "\n";
+    }
+    
 }

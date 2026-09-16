@@ -69,4 +69,23 @@ public class ListaSocio {
         return prestamo;
         
     }
+    
+    public void listaPrestamoSocio(int idSocio) {
+        Socio socio = getSocio(idSocio);
+        try {
+            socio.listaPrestamo();
+        } catch (NullPointerException e) {
+            System.out.println("El ID ingresado no existe.");
+        }
+    }
+    
+    public void representaSocio(int idSocio) {
+        Socio socio = getSocio(idSocio);
+        try {
+            System.out.println(socio.toString());
+        } catch (NullPointerException e) {
+            System.out.println("No se encontro ningun socio con el ID ingresado.");
+        }
+    }
+    
 }

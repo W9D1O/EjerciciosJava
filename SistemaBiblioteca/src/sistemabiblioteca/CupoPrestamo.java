@@ -51,4 +51,14 @@ public class CupoPrestamo {
         }
         return devolucion;
     }
+    
+    
+    @Override
+    public String toString() {
+        String string = "";
+        for (int i = 0; i < cantidad; i++) {
+            string += this.prestamos[i].toString();
+        }
+        return string;
+    }
 }

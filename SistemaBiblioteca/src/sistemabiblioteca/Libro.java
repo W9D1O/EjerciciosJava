@@ -26,4 +26,10 @@ public class Libro {
     public String getTitulo() {
         return this.titulo;
     }
+    
+    @Override
+    public String toString() {
+        return this.titulo + " " + this.autor +
+                "\n" + this.isbn;
+    }
  }
