@@ -21,9 +21,9 @@ public class ListaLibro {
         }
     }
     
-    public Libro getLibro(String isbn) {
+    public StockLibro getStock(String isbn) {
         for (StockLibro libro: this.libros) {
-            if (libro.identico(isbn)) return libro.getLibro();
+            if (libro.identico(isbn)) return libro;
         }
         return null;
     }
@@ -31,7 +31,7 @@ public class ListaLibro {
     private boolean existe(Libro unLibro) {
         boolean vf = false;
 
-        if (getLibro(unLibro.getISBN()) != null) return true;
+        if (getStock(unLibro.getISBN()) != null) return true;
         return vf;
     }
     

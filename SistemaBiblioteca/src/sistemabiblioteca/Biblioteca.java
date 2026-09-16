@@ -27,13 +27,33 @@ public class Biblioteca {
     
 
     
-    
-    /* Necesito generar el id del prestamo, lo me queda claro donde lo tengo que
-    generar.*/
+    //TODO: Sospecho que seria util tener distintas variantes de este metodo.
     public void altaPrestamo(String isbn, int idSocio) {
         if (this.ejemplares.isDisponible(isbn) && this.socios.hayCupo(idSocio)) {
-            Prestamo prestamo = new Prestamo(this.ejemplares.getLibro(isbn));
+            /*No estoy seguro si estoy rompiendo el encapsulamiento
+            pero creo que tengo que ser capaz de tomar el stock de 
+            libros realizar el prestamo y hacer su correspondiente
+            devolucion*/
+            StockLibro stock = this.ejemplares.getStock(isbn);
+            Prestamo prestamo = new Prestamo(stock.getLibro());
+            stock.disminuir();
             this.socios.addPrestamo(prestamo, idSocio);
         }
+    }
+    
+    
+    /*Por el momento vamos a dejarlo asi pero tendria que ver si agrego una
+    clase Devolucion por que definitivamente creo que deberia poder
+    agregar la fecha de devolucion*/
+    public void registrarDevolucion(int idPrestamo, int idSocio) {
+        Prestamo prestamo = this.socios.devolucion(idPrestamo, idSocio);
+        try {
+            StockLibro stock = this.ejemplares.getStock(prestamo.
+                    getLibro().getISBN());
+            stock.aumentar();
+        } catch (NullPointerException e) {
+            System.out.println("Error: Prestamo ID invalido.");
+        }
+        
     }
 }

@@ -56,4 +56,17 @@ public class ListaSocio {
     public void addPrestamo(Prestamo prestamo, int idSocio) {
         getSocio(idSocio).addPrestamo(prestamo);
     }
+    
+    public Prestamo devolucion(int idPrestamo, int idSocio) {
+        Prestamo prestamo = null;
+        try {
+           Socio socio = getSocio(idSocio); 
+           prestamo = socio.devolverPrestamo(idPrestamo);
+        } catch (NullPointerException e) {
+            System.out.println("Error Socio ID no valido.");
+        }
+        
+        return prestamo;
+        
+    }
 }

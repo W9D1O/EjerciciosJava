@@ -24,6 +24,10 @@ public class Prestamo {
         return this.idPrestamo;
     }
     
+    public Libro getLibro() {
+        return this.unLibro;
+    }
+    
     @Override
     public String toString() {
         return "Prestamo Numero: " + this.getId() + "\n"
