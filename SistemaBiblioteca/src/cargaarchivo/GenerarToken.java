@@ -15,28 +15,27 @@ public class GenerarToken {
         
     }
     
-    
+    //Me resultas poco simpatico pero funcionas, por lo menos por ahora.
     private String procesarCadena(String cadena) {
         String s = "";
-        do {
+        while (cursor.getPos() < cadena.length()
+                && cadena.toCharArray()[cursor.getPos()] != ','
+                && cadena.toCharArray()[cursor.getPos()] != '\n') {
+            
             s += cadena.toCharArray()[cursor.getPos()];
             cursor.aumentar();
-        } while (cursor.getPos() < cadena.length() - 1 &&
-                cadena.toCharArray()[cursor.getPos()] != ','
-                && cadena.toCharArray()[cursor.getPos()] != '\n');
+        }
+        if (cursor.getPos() == cadena.length()) {
+            cursor.resetCursor();
+            this.over = true;
+            return s;
+        }
         
         if (cadena.toCharArray()[cursor.getPos()] == '\n') {
             cursor.resetCursor();
             this.over = true;
-        } else if (cadena.toCharArray()[cursor.getPos()] == ','
-                && cursor.getPos() < cadena.length() - 1) {
-            cursor.aumentar();
-
-        } else {
-            s += cadena.toCharArray()[cursor.getPos()];
-            cursor.resetCursor();
-            this.over = true;
-        }
+        } else if (cursor.getPos() < cadena.length() - 1 &&
+                cadena.toCharArray()[cursor.getPos()] == ',') cursor.aumentar();
 
         return s;
     }

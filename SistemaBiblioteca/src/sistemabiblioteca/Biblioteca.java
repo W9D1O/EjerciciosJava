@@ -61,4 +61,8 @@ public class Biblioteca {
         //Momentaneamente va a esta como MAX_PRESTAMO la cantidad de libros.
         this.ejemplares.agregarLibro(unLibro, MAX_PRESTAMO);
     }
+    
+    public void imprimirInfoStock(String isbn) {
+        System.out.println(this.ejemplares.getStock(isbn).toString());
+    }
 }
