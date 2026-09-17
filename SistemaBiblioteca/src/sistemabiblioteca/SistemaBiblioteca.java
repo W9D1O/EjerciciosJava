@@ -10,6 +10,8 @@ public class SistemaBiblioteca {
         System.out.println(unSocio.equals(otroSocio));
         System.out.println(unSocio.getNombre().equals(otroSocio.getNombre()));
         System.out.println(unSocio.getDni() == otroSocio.getDni());
+        String s = "hola";
+        System.out.println(s.toCharArray()[2] + " longitud: " + s.length());
     }
 
 }

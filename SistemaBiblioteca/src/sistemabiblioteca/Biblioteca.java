@@ -56,4 +56,9 @@ public class Biblioteca {
         }
         
     }
+    
+    public void cargaLibro(Libro unLibro) {
+        //Momentaneamente va a esta como MAX_PRESTAMO la cantidad de libros.
+        this.ejemplares.agregarLibro(unLibro, MAX_PRESTAMO);
+    }
 }

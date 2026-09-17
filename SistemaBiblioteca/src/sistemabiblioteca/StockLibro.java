@@ -12,6 +12,7 @@ public class StockLibro {
     public StockLibro(Libro unLibro, int cantidad) {
         this.unLibro = unLibro;
         this.cantidad = cantidad;
+        this.disponible = cantidad;
     }
     
     public boolean isDisponible() {
@@ -37,12 +38,6 @@ public class StockLibro {
     /*Parece que el ISBN es unico para cada edicion, por lo tanto
     vamos asumir por el momento que esta biblioteca tiene todos
     sus libros de la misma edicion.*/
-    public boolean identico(Libro unLibro) {
-        return this.unLibro.getAutor().equals(unLibro.getAutor()) &&
-                this.unLibro.getISBN().equals(unLibro.getISBN()) &&
-                this.unLibro.getTitulo().equals(unLibro.getTitulo());
-    }
-    
     public boolean identico(String isbn) {
         return this.unLibro.getISBN().equals(isbn);
     }
