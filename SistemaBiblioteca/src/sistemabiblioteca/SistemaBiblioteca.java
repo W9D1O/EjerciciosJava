@@ -1,17 +1,28 @@
 package sistemabiblioteca;
 
+
+import cargaarchivo.LineToToken;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 public class SistemaBiblioteca {
 
 
     public static void main(String[] args) {
-        Biblioteca unaBiblio = new Biblioteca();
-        Socio unSocio = new Socio("juan perez",123,456,4);
-        Socio otroSocio = new Socio("juan perez",123,456,4);
-        System.out.println(unSocio.equals(otroSocio));
-        System.out.println(unSocio.getNombre().equals(otroSocio.getNombre()));
-        System.out.println(unSocio.getDni() == otroSocio.getDni());
-        String s = "hola";
-        System.out.println(s.toCharArray()[2] + " longitud: " + s.length());
+        LineToToken lineaTokens;
+        try (BufferedReader br = new BufferedReader(new FileReader(
+                    "/home/w9d1o/Downloads/novelas_500.csv"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                lineaTokens = new LineToToken(line);
+                for (String token: lineaTokens.ListaToken()) {
+                    System.out.println(token);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -8,8 +8,8 @@ public class GenerarToken {
     private String token;
     private boolean over;
     
-    public GenerarToken(String cadena) {
-        this.cursor = new Cursor();
+    public GenerarToken(String cadena, Cursor cursor) {
+        this.cursor = cursor;
         over = false;
         this.token = procesarCadena(cadena);
         
@@ -18,28 +18,29 @@ public class GenerarToken {
     
     private String procesarCadena(String cadena) {
         String s = "";
-        while (cadena.toCharArray()[cursor.getPos()] != ',' 
-                && cadena.toCharArray()[cursor.getPos()] != '\n') {
-          s += cadena.toCharArray()[cursor.getPos()];
-          cursor.aumentar();
-        }
-        
+        do {
+            s += cadena.toCharArray()[cursor.getPos()];
+            cursor.aumentar();
+        } while (cursor.getPos() < cadena.length() - 1 &&
+                cadena.toCharArray()[cursor.getPos()] != ','
+                && cadena.toCharArray()[cursor.getPos()] != '\n');
         
         if (cadena.toCharArray()[cursor.getPos()] == '\n') {
             cursor.resetCursor();
             this.over = true;
-        }
-        else if (cadena.toCharArray()[cursor.getPos()] == ','
-                && cursor.getPos() < cadena.length() - 1) cursor.aumentar(); 
-        else {
+        } else if (cadena.toCharArray()[cursor.getPos()] == ','
+                && cursor.getPos() < cadena.length() - 1) {
+            cursor.aumentar();
+
+        } else {
+            s += cadena.toCharArray()[cursor.getPos()];
             cursor.resetCursor();
             this.over = true;
         }
-        
-        
+
         return s;
     }
-    
+
     public String getToken() {
         return token;
     }
