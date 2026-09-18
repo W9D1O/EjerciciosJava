@@ -17,32 +17,39 @@ public class GenerarToken {
     
     //Me resultas poco simpatico pero funcionas, por lo menos por ahora.
     private String procesarCadena(String cadena) {
-        String s = "";
+        String contenido = "";
         while (cursor.getPos() < cadena.length()
-                && cadena.toCharArray()[cursor.getPos()] != ','
-                && cadena.toCharArray()[cursor.getPos()] != '\n') {
-            
-            s += cadena.toCharArray()[cursor.getPos()];
+                && cadena.toCharArray()[cursor.getPos()] != ',') {
+
+            contenido += cadena.toCharArray()[cursor.getPos()];
             cursor.aumentar();
         }
         if (cursor.getPos() == cadena.length()) {
             cursor.resetCursor();
             this.over = true;
-            return s;
+            return contenido;
         }
-        
-        if (cadena.toCharArray()[cursor.getPos()] == '\n') {
-            cursor.resetCursor();
-            this.over = true;
-        } else if (cursor.getPos() < cadena.length() - 1 &&
-                cadena.toCharArray()[cursor.getPos()] == ',') cursor.aumentar();
 
-        return s;
+        if (cursor.getPos() < cadena.length() - 1
+                && cadena.toCharArray()[cursor.getPos()] == ',') {
+            cursor.aumentar();
+        } else if (cursor.getPos() == cadena.length() - 1 &&
+                cadena.toCharArray()[cursor.getPos()] == ',') this.over = true;
+
+        return contenido;
     }
 
     public String getToken() {
         return token;
     }
+    
+    public boolean isInteger() {
+        for (int i = 0; i < token.length(); i++) {
+            if (token.codePointAt(i) < 48 || token.codePointAt(i) > 57) return false;
+        } 
+        return true;
+    }
+    
     
     public boolean isOver() {
         return this.over;

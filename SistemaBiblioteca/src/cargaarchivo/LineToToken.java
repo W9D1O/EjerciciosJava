@@ -10,20 +10,24 @@ import java.util.ArrayList;
 public class LineToToken {
     private GenerarToken generador;
     private ArrayList <String> tokens;
+    private ArrayList <Integer> numeros;
     private Cursor cursor;
     
     public LineToToken(String linea) {
         this.tokens = new ArrayList();
-        Cursor cursor = new Cursor();
-        generarListaToken(linea,cursor);
+        this.cursor = new Cursor();
+        generarListaToken(linea);
         
     }
 
-    private void generarListaToken(String linea, Cursor cursor) {
+
+    private void generarListaToken(String linea) {
         do {
             try {
-                this.generador = new GenerarToken(linea,cursor);
-                this.tokens.add(this.generador.getToken());
+                this.generador = new GenerarToken(linea, cursor);
+                String s = this.generador.getToken();
+                if (!this.generador.isInteger()) this.tokens.add(s);
+                else this.numeros.add(Integer.parseInt(s));
                 
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("ERROR: Linea vacia.");
