@@ -15,6 +15,7 @@ public class LineToToken {
     
     public LineToToken(String linea) {
         this.tokens = new ArrayList();
+        this.numeros = new ArrayList();
         this.cursor = new Cursor();
         generarListaToken(linea);
         

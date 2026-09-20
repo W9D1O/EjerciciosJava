@@ -4,7 +4,7 @@ package cargaarchivo;
 
 
 public class Cursor {
-    private static int cursor;
+    private int cursor;
     
     public Cursor() {
         cursor = 0;

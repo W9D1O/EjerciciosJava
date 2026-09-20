@@ -21,8 +21,12 @@ public class CupoPrestamo {
     }
     
     public void recibirPrestamo(Prestamo unPrestamo) {
-        this.prestamos[this.cantidad] = unPrestamo;
-        this.cantidad++;
+        if (!isCompleto()) {
+            this.prestamos[this.cantidad] = unPrestamo;
+            this.cantidad++;
+        } else {
+            System.out.println("No se puede realizar el prestamo. Cupo completo.");
+        }
 
     }
     
@@ -38,7 +42,10 @@ public class CupoPrestamo {
         Prestamo devolucion = null;
         int pos = posicionPrestamo(idPrestamo);
         if (pos != -1) {
-            if (pos + 1 == this.cantidad) this.cantidad--;
+            if (pos + 1 == this.cantidad) {
+                devolucion = this.prestamos[pos];
+                this.cantidad--;
+            }
             else {
                 devolucion = this.prestamos[pos];
                 for (int i = pos; i < this.cantidad - 1; i++) {

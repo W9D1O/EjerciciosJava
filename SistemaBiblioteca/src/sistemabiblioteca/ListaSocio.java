@@ -45,12 +45,8 @@ public class ListaSocio {
     }
     
     public boolean hayCupo(int idSocio) {
-        for (Socio socio: socios) {
-            if (socio.getId() == idSocio) {
-                return socio.hayCupo();
-            }
-        }
-        return false;
+        Socio socio = getSocio(idSocio);
+        return socio.hayCupo();
     }
     
     public void addPrestamo(Prestamo prestamo, int idSocio) {
