@@ -8,11 +8,13 @@ public class Vec2 {
     private double y;
     
     public Vec2() {
-        
+        this.x = 0;
+        this.y = 0;
     }
     
     public Vec2(double x, double y) {
-        
+        this.x = x;
+        this.y = y;
     }
     
     public double getX() {
@@ -40,12 +42,12 @@ public class Vec2 {
         this.y *= escalar;
     }
     
-    public void sumarVector(Vec2 vectorA, Vec2 unVector) {
+    public void sumarVector(Vec2 unVector) {
         this.x += unVector.x;
         this.y += unVector.y;
     }
     
-    public void restarVector(Vec2 vectorA, Vec2 unVector) {
+    public void restarVector(Vec2 unVector) {
         this.x -= unVector.x;
         this.y -= unVector.y;
     }
